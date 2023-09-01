@@ -16,18 +16,24 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  email String
+  email String @unique
   hash String
 
   firstName String? //Optional input 
   lastName String?
+  @@map("users")
+  bookmarks Bookmark[]
 }
 model Bookmark{
   id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now())// the time at the creation is added
   updatedAt DateTime @updatedAt
 
   title String
   description String?
   link String
+  //many bookmarks belong to a user
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  @@map("bookmarks")
 }

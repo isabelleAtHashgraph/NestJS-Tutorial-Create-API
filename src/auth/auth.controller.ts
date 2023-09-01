@@ -1,5 +1,6 @@
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { AuthDto } from 'src/dto';
 
 @Controller('auth') //global prefix route
 export class AuthController {
@@ -8,8 +9,8 @@ export class AuthController {
   }
   //We expect a post request on sign up and sign in:
   @Post('signup') //route auth/signup
-  signup() {
-    return this.authService.signup(); //automatically converts datatype to string
+  signup(@Body() dto: AuthDto) {
+    return this.authService.signup(dto); //automatically converts datatype to string
   }
 
   @Post('signin')
