@@ -11,6 +11,6 @@ export class UserController {
       '🚀 ~ file: user.controller.ts:10 ~ UserController ~ getMe ~ req:',
       req,
     );
-    return 'user_info';
+    return req.user;
   }
 }
